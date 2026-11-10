@@ -11,13 +11,12 @@
 
     <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border-t-4 border-blue-600">
         
-        <!-- BAGIAN LOGO DITAMBAHKAN DI SINI -->
         <div class="flex justify-center mb-4">
             <img src="SMANSAD.png" alt="Logo SMA Negeri 1 Dangia" class="w-24 h-24 object-contain">
         </div>
 
         <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">Ruang Tugas</h2>
-        <p class="text-sm text-gray-500 text-center mb-6">English Class - Mr. Erdy Laba</p>
+        <p class="text-sm text-gray-500 text-center mb-6">Mr. Erdy Laba</p>
 
         <form id="uploadForm" class="space-y-4">
             <div>
@@ -25,12 +24,24 @@
                 <input type="text" id="nama" required class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
             </div>
 
+            <!-- Penambahan Kelas X -->
             <div>
                 <label class="block text-sm font-medium text-gray-700">Kelas</label>
                 <select id="kelas" required class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     <option value="">-- Pilih Kelas --</option>
+                    <option value="X">Kelas X</option>
                     <option value="XI">Kelas XI</option>
                     <option value="XII">Kelas XII</option>
+                </select>
+            </div>
+
+            <!-- Penambahan Pilihan Mapel -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Mata Pelajaran</label>
+                <select id="mapel" required class="mt-1 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    <option value="">-- Pilih Mapel --</option>
+                    <option value="Bahasa Inggris">Bahasa Inggris</option>
+                    <option value="Mulok">Mulok</option>
                 </select>
             </div>
 
@@ -71,9 +82,12 @@
             reader.onload = async function() {
                 const base64Data = reader.result.split(',')[1];
                 
+                // Trik penggabungan agar Google Drive membaca Kelas & Mapel sekaligus
+                const kelasDanMapel = document.getElementById('kelas').value + " - " + document.getElementById('mapel').value;
+                
                 const formData = new URLSearchParams();
                 formData.append('nama', document.getElementById('nama').value);
-                formData.append('kelas', document.getElementById('kelas').value);
+                formData.append('kelas', kelasDanMapel); // Data yang dikirim adalah gabungan
                 formData.append('fileName', file.name);
                 formData.append('mimeType', file.type);
                 formData.append('fileData', base64Data);
