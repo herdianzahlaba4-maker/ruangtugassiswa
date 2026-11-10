@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengumpulan Tugas | SMA Negeri 1 Dangia</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Ini adalah mesin pembuat Confetti-nya -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex items-center justify-center p-4 font-sans">
 
     <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border-t-4 border-blue-600">
+        
+        <!-- BAGIAN LOGO DITAMBAHKAN DI SINI -->
+        <div class="flex justify-center mb-4">
+            <img src="SMANSAD.png" alt="Logo SMA Negeri 1 Dangia" class="w-24 h-24 object-contain">
+        </div>
+
         <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">Ruang Tugas</h2>
         <p class="text-sm text-gray-500 text-center mb-6">English Class - Mr. Erdy Laba</p>
 
@@ -45,7 +50,7 @@
     </div>
 
     <script>
-        // PASTE URL DARI GOOGLE SCRIPT V2 BAPAK DI SINI:
+        // JANGAN LUPA: PASTE URL DARI GOOGLE SCRIPT V2 BAPAK DI SINI:
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwIlMqjXN5j1RCHwbefX4BQdKe2iPq1riNCfbK4Nch-rUOe2_U6b4Kwgh1EkRXYUOJX/exec'; 
         
         const form = document.getElementById('uploadForm');
@@ -83,11 +88,6 @@
                     form.style.display = 'none';
                     successMsg.classList.remove('hidden');
 
-                    // ==========================================
-                    // EFEK CONFETTI DIMULAI DI SINI
-                    // ==========================================
-                    
-                    // 1. Ledakan besar di tengah layar
                     confetti({
                         particleCount: 150,
                         spread: 80,
@@ -95,13 +95,10 @@
                         colors: ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42']
                     });
                     
-                    // 2. Ledakan susulan dari sudut kiri dan kanan (delay 0.4 detik)
                     setTimeout(() => {
                         confetti({ particleCount: 100, angle: 60, spread: 55, origin: { x: 0 } });
                         confetti({ particleCount: 100, angle: 120, spread: 55, origin: { x: 1 } });
                     }, 400);
-
-                    // ==========================================
 
                 } catch (error) {
                     alert('Koneksi terputus. Silakan coba lagi.');
